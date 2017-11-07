@@ -1,10 +1,10 @@
-from pipeproxy import proxy
-from testObject import TestObject
-from pipeproxy.objectProxy.objectProxy import ObjectProxy
-from pipeproxy.proxyListener.proxyListener import ProxyListener
-from multiprocessing import Process
 import time
 import unittest
+from multiprocessing import Process
+from pipeproxy.lib.proxyListener.proxyListener import ProxyListener
+from pipeproxy import proxy
+from pipeproxy.lib.objectProxy.objectProxy import ObjectProxy
+from testObject import TestObject
 
 
 def setParameterTest(testObjectLookAlike):
