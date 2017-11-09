@@ -6,7 +6,9 @@ A sort-of-proxy solution for multiprocess communication using Pipe from mulitpro
 
 This module is meant to be used when you need a proxy of an object that can be used in a different process.
 <br>
-Basically it means you can use treat the proxy as if you have the original object in a different process.
+Basically it means you can treat the proxy as if you have the original object in a different process. At least 
+method calling. You don't have access to original object attributes (unless you write setters and getters). Also
+all the parameters passed in the method calling must be picklable.
 <br/> 
 Why not use an already existing solution: https://docs.python.org/2/library/multiprocessing.html#proxy-objects ?
 <br/>

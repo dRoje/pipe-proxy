@@ -4,7 +4,7 @@ import unittest
 from pipeproxy.lib.proxyMessages.replyMessage import *
 from pipeproxy.lib.proxyMessages.requestMessage import RequestMessage
 from pipeproxy.lib.objectProxy.objectProxy import ObjectProxy
-from pipeproxy.lib.objectProxy.proxyMessanger.proxyMessageSender import ProxyMessageSender
+from pipeproxy.lib.objectProxy.proxyMessenger.proxyMessageSender import ProxyMessageSender
 
 
 class ObjectProxyTest(unittest.TestCase):

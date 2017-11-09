@@ -1,5 +1,5 @@
 from objectProxy import ObjectProxy
-from proxyMessanger.proxyMessageSender import ProxyMessageSender
+from proxyMessenger.proxyMessageSender import ProxyMessageSender
 import multiprocessing
 
 

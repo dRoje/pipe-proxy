@@ -4,7 +4,7 @@ from multiprocessing import Process
 from pipeproxy.lib.proxyListener.proxyListener import ProxyListener
 from pipeproxy import proxy
 from pipeproxy.lib.objectProxy.objectProxy import ObjectProxy
-from testObject import TestObject
+from testObject import TestObject, UnpickleableTestObject
 
 
 def setParameterTest(testObjectLookAlike):
@@ -41,6 +41,15 @@ class ProxyTest(unittest.TestCase):
         testObject.setParameter(1)
         while testObjectProxyListener.listen():
             pass
+
+    def test_unpickleableObjectMethodCall(self):
+        testObject = UnpickleableTestObject()
+        testObjectProxy, testObjectProxyListener = proxy.createProxy(testObject)
+        p = Process(target=testObjectProxy.startTimer)
+        p.start()
+        testObjectProxyListener.listen()
+
+        assert 1
 
 
 if __name__ == '__main__':

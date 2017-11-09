@@ -1,5 +1,5 @@
 from pipeproxy.lib.proxyMessages.requestMessage import RequestMessage
-from proxyMessanger.proxyMessageSender import ProxyMessageSender
+from proxyMessenger.proxyMessageSender import ProxyMessageSender
 
 
 class ObjectProxy:

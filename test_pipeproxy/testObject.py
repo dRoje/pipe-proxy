@@ -19,4 +19,9 @@ class UnpickleableTestObject:
         self.unpickleableAttribute = Timer(1, self.method)
 
     def method(self):
-        pass
+        print "method was called"
+
+    def startTimer(self):
+        print "start timer"
+        self.unpickleableAttribute.start()
+
