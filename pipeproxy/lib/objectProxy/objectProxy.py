@@ -1,4 +1,5 @@
 from pipeproxy.lib.proxyMessages.requestMessage import RequestMessage
+from pipeproxy.lib.proxyMessages.replyMessage import ReplyMessage
 from proxyMessenger.proxyMessageSender import ProxyMessageSender
 
 
@@ -18,9 +19,11 @@ class ObjectProxy:
         """Creates a Request and sends it. Always expects a reply"""
         request = RequestMessage(functionName, args)
         reply = self.proxyMessageSender.sendMessage(request)
-        return reply
+        assert isinstance(reply, ReplyMessage)
+        return reply.getContent()
 
     @classmethod
     def addMethod(cls, method, name):
         assert callable(method)
         setattr(cls, name, method)
+

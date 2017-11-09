@@ -13,7 +13,7 @@ def setParameterTest(testObjectLookAlike):
 
 
 def getParameterTest(testObjectLookAlike):
-    return testObjectLookAlike.getParameter() == 1
+    assert testObjectLookAlike.getParameter() == 1
 
 
 class ProxyTest(unittest.TestCase):
@@ -50,6 +50,22 @@ class ProxyTest(unittest.TestCase):
         testObjectProxyListener.listen()
 
         assert 1
+
+    def test_methodCallWithMissingArgs(self):
+        testObject = TestObject()
+        testObjectProxy, testObjectProxyListener = proxy.createProxy(testObject)
+        testObjectProxy.setParameter()
+        from pipeproxy.lib.proxyListener.proxyListenerMessageHandler import WrongArgumentsError
+        with self.assertRaises(WrongArgumentsError):
+            testObjectProxyListener.listen()
+
+    def test_methodCallWithWrongArgs(self):
+        testObject = TestObject()
+        testObjectProxy, testObjectProxyListener = proxy.createProxy(testObject)
+        testObjectProxy.setParameter(1, 'a')
+        from pipeproxy.lib.proxyListener.proxyListenerMessageHandler import WrongArgumentsError
+        with self.assertRaises(WrongArgumentsError):
+            testObjectProxyListener.listen()
 
 
 if __name__ == '__main__':

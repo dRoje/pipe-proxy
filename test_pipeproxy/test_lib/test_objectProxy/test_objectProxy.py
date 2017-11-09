@@ -23,7 +23,7 @@ class ObjectProxyTest(unittest.TestCase):
         parentConnection, childConnection = multiprocessing.Pipe()
         objectProxy = ObjectProxy(ProxyMessageSender(parentConnection))
 
-        assert objectProxy.sendMessage('someFunction', ()) == NullReplyMessage()
+        assert objectProxy.sendMessage('someFunction', ()) == NullReplyMessage().getContent()
 
     def test_sendMessageNoArgs(self):
         parentConnection, childConnection = multiprocessing.Pipe()
@@ -42,11 +42,10 @@ class ObjectProxyTest(unittest.TestCase):
     def test_sendAndReceiveMessage(self):
         parentConnection, childConnection = multiprocessing.Pipe()
         objectProxy = ObjectProxy(ProxyMessageSender(parentConnection))
-
         p = multiprocessing.Process(target=self.sendMessageToPipe, args=[childConnection, 'reply'])
         p.start()
 
-        assert objectProxy.sendMessage('someFunction', ()) == ReplyMessage("reply")
+        assert objectProxy.sendMessage('someFunction', ()) == ReplyMessage("reply").getContent()
 
     def methodForTesting(self):
         print "I am a test method"
@@ -56,11 +55,4 @@ class ObjectProxyTest(unittest.TestCase):
         objectProxy = ObjectProxy(ProxyMessageSender(parentConnection))
         objectProxy.addMethod(self.methodForTesting, "testMe")
         objectProxy.testMe()
-
-
-
-
-
-
-
 

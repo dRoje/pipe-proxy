@@ -1,6 +1,15 @@
 from pipeproxy.lib.proxyMessages.replyMessage import *
 from pipeproxy.lib.proxyMessages.requestMessage import *
 
+import inspect
+
+class WrongArgumentsError(Exception):
+    pass
+
+
+class MissingFunctionError(Exception):
+    pass
+
 
 class ProxyListenerMessageHandler:
     def __init__(self, obj):
@@ -19,7 +28,11 @@ class ProxyListenerMessageHandler:
         try:
             reply = getattr(self.obj, function)(*args)
             return ReplyMessage(reply)
-        except AttributeError as e:
-            # no wanted method to execute
-            return ErrorReplyMessage(e.message)
+        except AttributeError:
+            raise MissingFunctionError("No function " + str(function) + " found in " + str(self.obj.__class__.__name__))
+        except TypeError:
+            functionSpecs = inspect.getargspec(getattr(self.obj, function)).args
+            raise WrongArgumentsError(
+                "Wrong arguments " + str(args) + " for '" + str(function) + "' in " + str(self.obj.__class__.__name__) + " expected: " + str(functionSpecs) )
+
 

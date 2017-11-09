@@ -10,7 +10,7 @@ def proxyFunctionDecorator(function):
         instance = args[0]
         argsWithoutInstance = args[1:]
         assert isinstance(instance, ObjectProxy)
-        instance.sendMessage(function.__name__, argsWithoutInstance)
+        return instance.sendMessage(function.__name__, argsWithoutInstance)
 
     return wrapper
 

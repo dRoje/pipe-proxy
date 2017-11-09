@@ -17,6 +17,6 @@ class ProxyListenerMessageHandlerTest(unittest.TestCase):
         testObject = TestObject()
         testObject.setParameter(1)
         proxyListenerMessageHandler = ProxyListenerMessageHandler(testObject)
-
-        assert isinstance(proxyListenerMessageHandler.handleReceivedMessage(RequestMessage('something')),
-                          ErrorReplyMessage)
+        from pipeproxy.lib.proxyListener.proxyListenerMessageHandler import MissingFunctionError
+        with self.assertRaises(MissingFunctionError):
+            proxyListenerMessageHandler.handleReceivedMessage(RequestMessage('something'))

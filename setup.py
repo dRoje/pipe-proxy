@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pipeproxy',
-      version='0.6',
+      version='0.7',
       description='A sort-of-proxy solution for multiprocess communication using Pipe from mulitprocessing.',
       url='https://github.com/dRoje/pipe-proxy.git',
       author='Duje Roje',
