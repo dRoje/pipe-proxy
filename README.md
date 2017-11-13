@@ -15,6 +15,9 @@ Why not use an already existing solution: https://docs.python.org/2/library/mult
 Because I needed my proxy to be able to handle big objects with attributes that can't be pickled. This is a 
 problem when using the solution from the multiprocessing module.
 
+Read more about the package on this blog post:
+http://matkodjipalo.com/index.php/2017/11/12/proxy-solution-python-multiprocessing/
+
 ### How to use it?
 
 You call a method 'createProxy' from the pipeproxy.proxy module. You must also provide the object of which you want
